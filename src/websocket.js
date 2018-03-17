@@ -28,6 +28,10 @@ class WebSocket extends EventTarget {
 
     const server = networkBridge.attachWebSocket(this, this.url);
 
+    if (server) {
+      server.protocol = this.protocol;
+    }
+
     /*
     * This delay is needed so that we dont trigger an event before the callbacks have been
     * setup. For example:
@@ -50,7 +54,7 @@ class WebSocket extends EventTarget {
           !server.options.verifyClient()
         ) {
           this.readyState = WebSocket.CLOSED;
-
+          server.readyState = WebSocket.CLOSED;
           logger(
             'error',
             `WebSocket connection to '${this.url}' failed: HTTP Authentication failed; no valid credentials available`
@@ -75,8 +79,10 @@ class WebSocket extends EventTarget {
               return;
             }
             this.protocol = selectedProtocol;
+            server.protocol = selectedProtocol;
           }
           this.readyState = WebSocket.OPEN;
+          server.readyState = WebSocket.OPEN;
           this.dispatchEvent(createEvent({ type: 'open', target: this }));
           server.dispatchEvent(createEvent({ type: 'connection' }), server, this);
         }

@@ -1,5 +1,5 @@
 {
-  "name": "mock-socket",
+  "name": "mock-socket-with-protocol",
   "version": "7.1.0",
   "description": "Javascript mocking library for websockets and socket.io",
   "main": "./dist/mock-socket",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thoov/mock-socket.git"
+    "url": "https://github.com/lgandecki/mock-socket.git"
   },
   "keywords": [
     "websockets",
@@ -31,9 +31,9 @@
   "author": "Travis Hoover",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thoov/mock-socket/issues"
+    "url": "https://github.com/lgandecki/mock-socket/issues"
   },
-  "homepage": "https://github.com/thoov/mock-socket",
+  "homepage": "https://github.com/lgandecki/mock-socket",
   "devDependencies": {
     "ava": "^0.19.1",
     "babel-core": "^6.24.1",
