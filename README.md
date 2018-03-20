@@ -6,22 +6,18 @@
 Javascript mocking library for <a href="https://developer.mozilla.org/en-US/docs/WebSockets">websockets</a> and <a href="http://socket.io/">socket.io</a>
 </p>
 
-<p align="center">
-  <a href="https://travis-ci.org/thoov/mock-socket">
-    <img src="https://img.shields.io/travis/thoov/mock-socket.svg?style=for-the-badge" alt="Build Status">
-  </a>
-  <a href="https://github.com/thoov/mock-socket/blob/master/LICENSE.txt">
-    <img src="https://img.shields.io/github/license/thoov/mock-socket.svg?style=for-the-badge" alt="Code Coverage">
-  </a>
-  <a href="https://www.npmjs.com/package/mock-socket">
-    <img src="https://img.shields.io/npm/v/mock-socket.svg?style=for-the-badge" alt="NPM Version">
-  </a>
-</p>
+## Why?
+
+This is basically mock-socket made to work with apollo subscriptions-transport-ws.
+The implementation is not perfect, which was noticed over two years ago by @brian-mann of cypress.io :
+https://github.com/thoov/mock-socket/issues/72 . Since two years later this architectural problem is still not fixed,
+I've decided to fork with the tiny change that's just enough to make it work in this specific usecase.
+Thanks @thoov for the amazing work on this package! I actually started writing my own websocket server implementation, when, after a half day of happy hacking I came to realization "this is nodejs.. someone had to got this to work before me", and there it was. :)
 
 ## Installation
 
 ```shell
-npm install mock-socket --dev
+npm install mock-socket-with-protocol --dev
 ```
 
 ## Usage
@@ -30,13 +26,13 @@ To use within a node environment you can simply import or require the files dire
 option is great for phantomjs or CI environments.
 
 ```js
-import { WebSocket, Server, SocketIO } from 'mock-socket';
+import { WebSocket, Server, SocketIO } from 'mock-socket-with-protocol';
 
 // OR
 
-const mockServer = require('mock-socket').Server;
-const socketIO = require('mock-socket').SocketIO;
-const mockWebSocket = require('mock-socket').WebSocket;
+const mockServer = require('mock-socket-with-protocol').Server;
+const socketIO = require('mock-socket-with-protocol').SocketIO;
+const mockWebSocket = require('mock-socket-with-protocol').WebSocket;
 ```
 
 ## Native WebSocket Example
@@ -55,7 +51,7 @@ function Chat() {
 
 ```js
 // chat-test.js
-import { Server } from 'mock-socket';
+import { Server } from 'mock-socket-with-protocol';
 
 describe('Chat Unit Test', () => {
   it('basic test', (done) => {
@@ -95,7 +91,7 @@ function Chat() {
 
 ```js
 // chat-test.js
-import { SocketIO, Server } from 'mock-socket';
+import { SocketIO, Server } from 'mock-socket-with-protocol';
 
 describe('Chat Unit Test', () => {
   it('basic test', (done) => {
@@ -132,8 +128,8 @@ describe('Chat Unit Test', () => {
 The easiest way to work on the project is to clone the repo down via:
 
 ```shell
-git clone git@github.com:thoov/mock-socket.git
-cd mock-socket
+git clone git@github.com:TheBrainFamily/mock-socket-with-protocol.git
+cd mock-socket-with-protocol
 yarn
 ```
 Then to create a local build via:
@@ -151,7 +147,7 @@ yarn link
 At this point you can create other projects / apps locally and reference this local build via:
 
 ```shell
-yarn link mock-socket
+yarn link mock-socket-with-protocol
 ```
 
 from within your other projects folder. Make sure that after any changes you run `yarn build`!
@@ -190,4 +186,4 @@ yarn test:coverage
 
 ## Feedback / Issues
 
-If you have any feedback, encounter any bugs, or just have a question, please feel free to create a [github issue](https://github.com/thoov/mock-socket/issues/new) or send me a tweet at [@thoov](https://twitter.com/thoov).
+If you have any feedback, encounter any bugs, or just have a question, please feel free to create a [github issue](https://github.com/thoov/mock-socket-with-protocol/issues/new)
